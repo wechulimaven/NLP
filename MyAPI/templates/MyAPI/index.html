@@ -1,0 +1,154 @@
+{% extends "MyAPI/base.html" %}
+
+{% load static %}
+
+{% block content %}
+<head>
+<style>
+table, th, td {
+  border: 1px solid black;
+}
+
+table {
+  width: 100%;
+}
+</style>
+</head>
+
+
+	</div>
+	<div class="row">
+		<div class="col-md-1 col-lg-3 col-xl-3 col-sm-1 col-1"></div>
+		<div class="col-md-10 col-lg-6 col-xl-6 col-sm-10 col-10">
+			<h1> English-Luo Language Translation</h1>
+			<br><br>
+
+            <form action="{% url 'MyApi:index' %}" method="get">
+  <input name="q" type="text" placeholder="Search...">
+  {% comment %} <button type="submit" class="btn btn-default">Translate</button> {% endcomment %}
+ <br><br>
+  <div class="row">
+				    <div class="form-group col-xl-5 col-lg-5">
+					    <label for="lang1">From</label>
+					    <select class="form-control" id="lang1" name="lang1">
+							<option value="ar">English</option>
+							{% comment %} <option value="ar">Luo</option> {% endcomment %}
+							{% comment %} <option value="bn">Bengali</option>
+							<option value="en" selected>English</option>
+							<option value="fr">French</option>
+							<option value="de">German</option>
+							<option value="hi">Hindi</option>
+							<option value="it">Italian</option>
+							<option value="ja">Japanese</option>
+							<option value="pt">Portuguese</option>
+							<option value="ru">Russian</option>
+							<option value="es">Spanish</option>
+							<option value="ta">Tamil</option>
+							<option value="te">Telugu</option> {% endcomment %}
+					    </select>
+					</div>
+					<div class="form-group col-xl-5 col-lg-5">
+					    <label for="lang2">to</label>
+					    <select class="form-control" id="lang2" name="lang2">
+							<option value="ar">Luo</option>
+							{% comment %} <option value="ar">English</option> {% endcomment %}
+							{% comment %} <option value="bn">Bengali</option>
+							<option value="en">English</option>
+							<option value="fr">French</option>
+							<option value="de">German</option>
+							<option value="hi" selected>Hindi</option>
+							<option value="it">Italian</option>
+							<option value="ja">Japanese</option>
+							<option value="pt">Portuguese</option>
+							<option value="ru">Russian</option>
+							<option value="es">Spanish</option>
+							<option value="ta">Tamil</option>
+							<option value="te">Telugu</option> {% endcomment %}
+					    </select>
+					</div>
+					<div class="col-xl-2 col-lg-2 butn"><button type="submit" class="btn btn-dark">Translate</button></div>
+				</div>
+<br><br>
+				 <div class="form-group col-xl-5 col-lg-5">
+			{% for quer in albums %}
+				<center><div class="alert alert-light" style="max-width: 500px;">
+					{% comment %} {% for message in messages %} {% endcomment %}
+					<div class = "task">
+     <table style="width:100%">
+    <td>{{ quer.english }}</td>
+    <td>{{ quer.luo }}</td>
+</tr>
+</table>
+</div>
+						{% comment %} <p align="center">{{ quer.english }} || {{quer.luo}}</p> {% endcomment %}
+					{% comment %} {% endfor %} {% endcomment %}
+				</div></center>
+			{% endfor %}
+			</div>
+</form>
+
+{% comment %} <br><br>
+
+<div class = "task">
+     <table style="width:100%">
+	 <tr>
+    <th>English</th>
+    <th>Luo Language</th>
+
+	 </tr>
+  {% for quer in albums %}
+  <tr>
+    <td>{{ quer.english }}</td>
+    <td>{{ quer.luo }}</td>
+</tr>
+  {% endfor %}
+
+</table>
+</div> {% endcomment %}
+
+
+
+
+
+
+{% comment %} 
+            <div class="form-group col-xl-5 col-lg-5">
+			{% for quer in albums %} {% endcomment %}
+				{% comment %} <center><div class="alert alert-light" style="max-width: 500px;"> {% endcomment %}
+					{% comment %} {% for message in messages %} {% endcomment %}
+						{% comment %} <p align="center">{{ quer }}</p> {% endcomment %}
+					{% comment %} {% endfor %} {% endcomment %}
+				{% comment %} </div></center>
+			{% endfor %}
+			</div> {% endcomment %}
+
+
+			{% comment %} <form method="POST">
+			    {% csrf_token %}
+                 <form class="form-group" role="search" method="get" action="{% url 'MyApi:index' %}">
+                <div class="form-group">
+                    <input type="text" class="form-control" name="q" value="{{ request.GET.q }}">
+                </div>
+                <button type="submit" class="btn btn-default">Translate</button>
+            </form> {% endcomment %}
+			    {% comment %} <div class="form-group">
+			        <label for="text">Text</label>
+			        <textarea name="text" class="form-control" id="text" autofocus="true" required ></textarea>
+			    </div> {% endcomment %}
+			    
+			</form><br>
+
+			<div class="form-group col-xl-5 col-lg-5">
+			{% if messages %}
+				<center><div class="alert alert-light" style="max-width: 500px;">
+					{% for message in messages %}
+						<p align="center">{{ message }}</p>
+					{% endfor %}
+				</div></center>
+			{% endif %}
+			</div>
+		</div>
+		<div class="col-md-1 col-lg-3 col-xl-3 col-sm-1 col-1"></div>
+	</div>
+
+{% endblock %}
